@@ -90,11 +90,12 @@ npm install
 npm run dev
 ```
 
-Truy cập bằng trình duyệt: http://localhost:3000/roles
+
 Mặc định:
 
 * Frontend: http://localhost:3000
 * Backend: http://localhost:8080
+* Truy cập bằng trình duyệt: http://localhost:3000/roles
 
 ---
 
