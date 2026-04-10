@@ -1,0 +1,56 @@
+/* components/Sidebar.module.css */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: #1e293b; /* Màu xanh đen slate 800 */
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #334155;
+  z-index: 999;
+}
+
+.logo {
+  padding: 0 20px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #3b82f6; /* Blue 500 */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.menuItem:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.active {
+  background-color: #3b82f6;
+  color: #ffffff !important;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}

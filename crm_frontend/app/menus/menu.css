@@ -1,0 +1,61 @@
+.page-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* Vùng nội dung bên phải */
+.main-content {
+  flex: 1;
+  margin-left: 260px; /* Khớp với chiều rộng Sidebar */
+  
+}
+
+.menu-container {
+  padding: 20px;
+  margin-left: 260px;
+}
+
+.page-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form input,
+.form select {
+  padding: 8px;
+  color: black;
+}
+
+.form button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.menu-table th,
+.menu-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.menu-table th {
+  background-color: #17a5a5;
+}
+
+.menu-table button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
