@@ -1,61 +1,387 @@
-.page-wrapper {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #f8fafc;
-}
+@import url('https://fonts.googleapis.com/css2?family=Genos:wght@200;400;600&family=Manjari:wght@100;400;700&family=Manrope:wght@200;400;600&display=swap');
 
-/* Vùng nội dung bên phải */
-.main-content {
-  flex: 1;
-  margin-left: 260px; /* Khớp với chiều rộng Sidebar */
-  
+.page-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
 }
 
 .menu-container {
-  padding: 20px;
-  margin-left: 260px;
+    padding: 30px;
+    margin-left: 260px;
+    width: 90%;
+    border: 1px solid #000000;
+    font-family: Manrope;
 }
 
 .page-title {
-  font-size: 28px;
-  margin-bottom: 20px;
+    margin-top: -20px;
+    font-size: 24px;
+    padding-left: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+    background-color: #007bff;
+    border-radius: 15px;
 }
 
+/* form layout */
 .form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    margin-bottom: 20px;
 }
 
-.form input,
-.form select {
-  padding: 8px;
-  color: black;
+/* mỗi field */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 200px;
 }
 
-.form button {
-  padding: 8px 12px;
-  cursor: pointer;
+/* label */
+.form-label {
+    font-size: 15px;
+    color: #000000;
+    font-weight: bolder;
 }
 
-.menu-table {
-  width: 100%;
-  border-collapse: collapse;
+/* ẩn label cho button nhưng vẫn giữ layout thẳng hàng */
+.form-label.invisible {
+    visibility: hidden;
 }
 
-.menu-table th,
-.menu-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
+/* input + select */
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    color: #000;
 }
 
-.menu-table th {
-  background-color: #17a5a5;
+/* button */
+.form-group button {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bolder;
 }
 
-.menu-table button {
-  padding: 5px 10px;
-  cursor: pointer;
+
+
+.treeContainer {
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+
+}
+
+/* mỗi node là 1 dòng */
+.tree-node {
+    position: relative;
+    padding: 8px 12px;
+    /* padding-left: calc(12px + var(--level) * 20px); */
+    /* border-bottom: 1px solid #334155; */
+    margin-left: calc(var(--level) * 20px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #e2e8f0;
+    transition: 0.2s;
+    color: #000000;
+}
+
+/* dòng cuối không cần border */
+.tree-node:last-child {
+    border-bottom: none;
+}
+
+/* hover */
+.tree-node:hover {
+    background-color: #cecece;
+    border-radius: 4px;
+}
+
+/* icon expand */
+.tree-toggle {
+    cursor: pointer;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* tên */
+.tree-label {
+    font-weight: 500;
+}
+
+
+.tree-node {
+    display: flex;
+    justify-content: space-between;
+    /* 🔥 tách trái - phải */
+    align-items: center;
+    padding: 8px 12px;
+    padding-left: calc(16px + var(--level) * 24px);
+}
+
+/* nhóm bên trái */
+.tree-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* nút delete */
+.tree-delete {
+    background: transparent;
+    border: none;
+    color: #e90202;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.tree-delete:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+
+
+
+.tree-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.tree-edit {
+    background: #1e40af;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tree-save {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.tree-cancel {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.tree-input {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* style.css */
+.tree-node {
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+}
+
+/* Định nghĩa màu dựa trên biến --level truyền từ React */
+/* Cấp 0 */
+.tree-node[style*="--level: 0"] {
+    background-color: #b2d7ff;
+    /* Slate 50 */
+    font-weight: 800 !important;
+
+}
+
+/* Cấp 1 */
+.tree-node[style*="--level: 1"] {
+    background-color: #b7e2ff;
+    /* Blue 50 */
+}
+
+/* Cấp 2 */
+.tree-node[style*="--level: 2"] {
+    background-color: #d1f0ff;
+    /* Violet 50 */
+}
+
+/* Các cấp sâu hơn */
+.tree-node[style*="--level: 3"],
+.tree-node[style*="--level: 4"] {
+    background-color: #dcecef;
+}
+
+/* Hiệu ứng khi hover để phân biệt rõ hơn */
+.tree-node:hover {
+    filter: brightness(0.95);
+    cursor: pointer;
+}
+
+
+/* Container của mỗi dòng (Node) */
+.tree-node {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+    /* Thụt lề tự động dựa trên level */
+    padding-left: calc(var(--level) * 20px + 12px);
+}
+
+.tree-node:hover {
+    background-color: #f9fafb;
+}
+
+/* Định dạng in đậm và màu sắc theo Level */
+.tree-node[style*="--level: 0"] {
+    background-color: #b2d7ff;
+}
+
+.tree-node[style*="--level: 0"] .tree-label {
+    font-weight: 800 !important;
+}
+
+.tree-node[style*="--level: 1"] {
+    background-color: #b7e2ff;
+}
+
+
+/* Phần bên trái: Toggle & Label */
+.tree-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tree-toggle {
+    color: #6b7280;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.tree-toggle:hover {
+    color: #2563eb;
+}
+
+.tree-label {
+    color: #232323;
+}
+
+/* Input khi đang sửa */
+.tree-input {
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.tree-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Nhóm nút hành động bên phải */
+.tree-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    /* Ẩn đi khi không hover */
+    transition: opacity 0.2s;
+}
+
+.tree-node:hover .tree-actions {
+    opacity: 1;
+    /* Hiện lên khi hover vào node */
+}
+
+
+.my-toast-success {
+    background: #ecffe8 !important;
+    color: #23b30d !important;
+    border: 1px solid #33ff1c !important;
+    font-weight: bold;
+}
+
+/* ERROR */
+.my-toast-error {
+    background: #ffe8e8 !important;
+    color: #d90429 !important;
+    border: 1px solid #ff4d4f !important;
+    font-weight: bold;
+}
+
+/* OPTIONAL: đẹp hơn */
+.Toastify__toast {
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.action-btn {
+    padding: 4px;
+    border-radius: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.btn-saved {
+    color: #16a34a;
+}
+
+.btn-saved:hover {
+    background-color: #f0fdf4;
+}
+
+.btn-canceled {
+    color: #9ca3af;
+}
+
+.btn-canceled:hover {
+    background-color: #f3f4f6;
+}
+
+.btn-edit {
+    color: #3b82f6;
+}
+
+.btn-edit:hover {
+    background-color: #eff6ff;
+}
+
+.btn-deleted {
+    color: #ef4444;
+}
+
+.btn-deleted:hover {
+    background-color: #fef2f2;
 }
